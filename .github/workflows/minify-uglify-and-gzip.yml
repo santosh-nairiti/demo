@@ -1,0 +1,48 @@
+name: Minify, Uglify, and Gzip Files
+
+on:
+  push:
+    branches:
+      - main  # Adjust branch name as per your repository
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install -g uglify-js clean-css-cli html-minifier
+
+    - name: Uglify JavaScript
+      run: |
+        find . -name "*.js" -exec uglifyjs {} -o {} \;
+
+    - name: Minify CSS
+      run: |
+        find . -name "*.css" -exec cleancss -o {} {} \;
+
+    - name: Minify HTML
+      run: |
+        find . -name "*.html" -exec html-minifier --collapse-whitespace --remove-comments --minify-js true --minify-css true -o {} {} \;
+
+    - name: Gzip files
+      run: |
+        find . -name "*.html" -exec gzip -k {} \;
+        find . -name "*.css" -exec gzip -k {} \;
+        find . -name "*.js" -exec gzip -k {} \;
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add .
+        git commit -m 'Minified, uglified, and gzipped files'
+        git push https://github.com/username/repository.git HEAD:main
