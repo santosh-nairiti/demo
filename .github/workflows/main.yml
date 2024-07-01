@@ -39,18 +39,13 @@ jobs:
         find . -name "*.css" -exec gzip -k {} \;
         find . -name "*.js" -exec gzip -k {} \;
 
-    - name: Check if files are changed
-      id: check_changes
-      run: |
-        git diff --exit-code || echo "::set-output name=files_changed::true"
-
     - name: Commit and push changes
-      if: steps.check_changes.outputs.files_changed == 'true'
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
         git add .
         git commit -m 'Minified, uglified, and gzipped files'
-        git push
+        git push https://username:${{ secrets.PAT }}@github.com/owner/repository.git HEAD:main
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PAT: ${{ secrets.PAT }}
+
