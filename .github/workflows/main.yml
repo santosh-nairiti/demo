@@ -3,7 +3,7 @@ name: Minify, Uglify, and Gzip Files
 on:
   push:
     branches:
-      - demo
+      - demo  # Adjust branch name as per your repository
 
 jobs:
   build:
@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        ref: demo  # Specify the branch name to checkout
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
@@ -45,4 +47,4 @@ jobs:
         git config --global user.email 'github-actions@github.com'
         git add .
         git commit -m 'Minified, uglified, and gzipped files'
-        git push https://github.com/john-doe/demo.git HEAD:main
+        git push https://github.com/username/repository.git HEAD:demo
