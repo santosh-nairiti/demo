@@ -21,13 +21,22 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install uglify-js
-        run: npm install uglify-js -g
+      - name: Install Tools
+        run: |
+          npm install uglify-js -g
+          npm install gzip-js -g
 
-      - name: Run Uglify JS on all JS files
+      - name: Minify, Uglify and Gzip JS files
         run: |
           mkdir -p ./dist   # Create a directory to store minimized files
           for file in ./*.js; do
-            npx uglify-js "$file" -o "./dist/$(basename "$file" .js).min.js" --compress --mangle
+            base=$(basename "$file" .js)
+            npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle
+            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz"
           done
+        working-directory: ${{ github.workspace }}
+
+      - name: Verify Output Files
+        run: |
+          ls -al ./dist
         working-directory: ${{ github.workspace }}
