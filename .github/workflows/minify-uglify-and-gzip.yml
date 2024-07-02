@@ -3,7 +3,7 @@ name: Minify Uglify and Gzip
 on:
   push:
     branches:
-      - demo  # Replace with your branch name if different 
+      - main  # Replace with your branch name if different 
 
 jobs:
   build:
@@ -20,20 +20,17 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./path/to/your/project  # Specify the path if your package.json is not at the root
-
+        
       - name: Minify and Uglify
         run: |
           # Replace with your minification and uglification command
           # Example for JavaScript files using UglifyJS
           npx uglify-js path/to/your/project/file.js -o path/to/your/project/output.min.js --compress --mangle
-        working-directory: ./path/to/your/project  # If required
 
       - name: Gzip
         run: |
           # Gzip the minified file
           gzip path/to/your/project/output.min.js
-        working-directory: ./path/to/your/project  # If required
 
       - name: Commit changes
         run: |
