@@ -16,18 +16,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      # Ensure Node.js and dependencies are installed
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-      - name: Install uglify-js
-        run: npm install uglify-js -g
+      # Install dependencies including uglify-js, minify, gzip-js
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Run Uglify JS on all JS files
-        run: |
-          mkdir -p ./dist   # Create a directory to store minimized files
-          for file in ./*.js; do
-            npx uglify-js "$file" -o "./dist/$(basename "$file" .js).min.js" --compress --mangle
-          done
-        working-directory: ${{ github.workspace }}
+      # Debugging: List files to verify correct path
+      - name: List Files
+        run: ls -al
+
+      # Run minification and uglification steps
+      - name: Minify JS
+        run: npm run minify
+
+      - name: Uglify JS
+        run: npm run uglify
+
+      # Gzip the minified file
+      - name: Gzip JS
+        run: npm run gzip
+
+      # Debugging: List files after operations to verify changes
+      - name: List Files After Operations
+        run: ls -al
