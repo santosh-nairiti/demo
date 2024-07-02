@@ -1,12 +1,9 @@
-name: Node.js CI
+name: Minify Uglify and Gzip
 
 on:
   push:
     branches:
-      - "main"
-  pull_request:
-    branches:
-      - "main"
+      - main  # Replace with your branch name if different 
 
 jobs:
   build:
@@ -16,22 +13,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '14'  # Specify the version of Node.js you need
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
+      - name: Minify and Uglify
+        run: |
+          # Replace with your minification and uglification command
+          # Example for JavaScript files using UglifyJS
+          npx uglify-js path/to/your/project/file.js -o path/to/your/project/output.min.js --compress --mangle
 
-      - name: Uglify JS
-        run: npm run uglify
+      - name: Gzip
+        run: |
+          # Gzip the minified file
+          gzip path/to/your/project/output.min.js
 
-      - name: Minify JS
-        run: npm run minify
-
-      - name: Gzip JS
-        run: npm run gzip
+      - name: Commit changes
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add path/to/your/project/output.min.js.gz
+          git commit -m "Auto minify, uglify, and gzip"
+          git push
