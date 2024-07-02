@@ -3,7 +3,7 @@ name: Minify Uglify and Gzip
 on:
   push:
     branches:
-      - demo  # Replace with your branch name if different
+      - demo  # Replace with your branch name if different 
 
 jobs:
   build:
