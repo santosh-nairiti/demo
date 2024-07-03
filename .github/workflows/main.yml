@@ -1,7 +1,10 @@
-name: Build and Deploy
+name: Gulp Build
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -10,21 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.14.0
 
-      - name: Run Gulp to minify files
-        run: npx gulp
+    - name: Install dependencies
+      run: npm install
 
-      - name: Commit and push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Add minified files"
-          git push origin main
+    - name: List project files for debugging
+      run: ls -R
+
+    - name: Run Gulp tasks
+      run: npx gulp
