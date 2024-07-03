@@ -5,24 +5,27 @@ const gzip = require('gulp-gzip');
 
 // Task to minify JavaScript files
 gulp.task('minify-js', function() {
-    return gulp.src('src/**/*.js')  // Corrected path to 'src' directory
+    return gulp.src('src/**/*.js') // Adjust path if needed
         .pipe(uglify())
-        .pipe(gulp.dest('dist/js')); // Output directory for JavaScript files
+        .pipe(gulp.dest('dist/js'));
 });
 
 // Task to minify CSS files
 gulp.task('minify-css', function() {
-    return gulp.src('src/**/*.css')  // Corrected path to 'src' directory
+    return gulp.src('src/**/*.css') // Adjust path if needed
         .pipe(cleanCSS())
-        .pipe(gulp.dest('dist/css')); // Output directory for CSS files
+        .pipe(gulp.dest('dist/css'));
 });
 
 // Task to gzip files (optional)
 gulp.task('gzip', function() {
-    return gulp.src(['dist/**/*.js', 'dist/**/*.css'])
+    return gulp.src(['dist/**/*.js', 'dist/**/*.css']) // Adjust path if needed
         .pipe(gzip())
-        .pipe(gulp.dest('dist')); // Output directory for gzipped files
+        .pipe(gulp.dest('dist'));
 });
 
 // Default task to run all tasks
 gulp.task('default', gulp.series('minify-js', 'minify-css', 'gzip'));
+
+
+
