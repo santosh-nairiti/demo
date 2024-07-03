@@ -1,24 +1,28 @@
 const gulp = require('gulp');
 const uglify = require('gulp-uglify');
-const gzip = require('gulp-gzip');
 const cleanCSS = require('gulp-clean-css');
+const gzip = require('gulp-gzip');
 
-function minifyCSS() {
-    return gulp.src('src/css/*.css')
-        .pipe(cleanCSS({ compatibility: 'ie8' }))
-        .pipe(gulp.dest('dist/css'));
-}
-
-function minifyJS() {
-    return gulp.src('src/js/*.js')
+// Task to minify JavaScript files
+gulp.task('minify-js', function() {
+    return gulp.src('src/**/*.js') // Adjust path if needed
         .pipe(uglify())
-        .pipe(gulp.dest('dist/js'));
-}
+        .pipe(gulp.dest('dist'));
+});
 
-function gzipFiles() {
-    return gulp.src('dist/**/*')
+// Task to minify CSS files
+gulp.task('minify-css', function() {
+    return gulp.src('src/**/*.css') // Adjust path if needed
+        .pipe(cleanCSS())
+        .pipe(gulp.dest('dist'));
+});
+
+// Task to gzip files (optional)
+gulp.task('gzip', function() {
+    return gulp.src(['dist/**/*.js', 'dist/**/*.css']) // Adjust path if needed
         .pipe(gzip())
         .pipe(gulp.dest('dist'));
-}
+});
 
-exports.default = gulp.series(minifyCSS, minifyJS, gzipFiles);
+// Default task to run all tasks
+gulp.task('default', gulp.series('minify-js', 'minify-css', 'gzip'));
