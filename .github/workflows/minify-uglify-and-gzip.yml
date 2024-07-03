@@ -3,10 +3,10 @@ name: Node.js CI
 on:
   push:
     branches:
-      - "main"
+      - main
   pull_request:
     branches:
-      - "main"
+      - main
 
 jobs:
   build:
@@ -16,27 +16,42 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20.14.0'
+          node-version: '14'
 
-      - name: Install Tools
+      - name: Install UglifyJS and GzipJS
         run: |
           npm install uglify-js -g
           npm install gzip-js -g
 
-      - name: Minify, Uglify and Gzip JS files
+      - name: Minify, Uglify, and Gzip JS files
         run: |
-          mkdir -p ./dist   # Create a directory to store minimized files
+          mkdir -p ./dist/js   # Create a directory to store minimized JS files
           for file in ./*.js; do
             base=$(basename "$file" .js)
-            npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle
-            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz"
+            npx uglify-js "$file" -o "./dist/js/$base.min.js" --compress --mangle
+            gzip -c "./dist/js/$base.min.js" > "./dist/js/$base.min.js.gz"
           done
-        working-directory: ${{ github.workspace }}
+
+      - name: Minify and Gzip HTML files
+        run: |
+          mkdir -p ./dist/html   # Create a directory to store minimized HTML files
+          for file in ./*.html; do
+            base=$(basename "$file" .html)
+            npx html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir ./ --output-dir ./dist/html
+            gzip -c "./dist/html/$base.min.html" > "./dist/html/$base.min.html.gz"
+          done
+
+      - name: Minify and Gzip CSS files
+        run: |
+          mkdir -p ./dist/css   # Create a directory to store minimized CSS files
+          for file in ./*.css; do
+            npx clean-css-cli "$file" -o "./dist/css/$(basename $file .css).min.css"
+            gzip -c "./dist/css/$(basename $file .css).min.css" > "./dist/css/$(basename $file .css).min.css.gz"
+          done
 
       - name: Verify Output Files
         run: |
           ls -al ./dist
-        working-directory: ${{ github.workspace }}
