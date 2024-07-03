@@ -26,7 +26,7 @@ jobs:
           npm install uglify-js -g
           npm install gzip-js -g
 
-      - name: Minify, Uglify, and Gzip JS files
+      - name: Minify and Gzip JS files
         run: |
           mkdir -p ./dist/js   # Create a directory to store minimized JS files
           for file in ./*.js; do
@@ -35,13 +35,18 @@ jobs:
             gzip -c "./dist/js/$base.min.js" > "./dist/js/$base.min.js.gz"
           done
 
-      - name: Minify and Gzip HTML files
+      - name: Minify HTML files
         run: |
           mkdir -p ./dist/html   # Create a directory to store minimized HTML files
           for file in ./*.html; do
             base=$(basename "$file" .html)
             npx html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir ./ --output-dir ./dist/html
-            gzip -c "./dist/html/$base.min.html" > "./dist/html/$base.min.html.gz"
+          done
+
+      - name: Gzip Minified HTML files
+        run: |
+          for file in ./dist/html/*.html; do
+            gzip -c "$file" > "$file.gz"
           done
 
       - name: Minify and Gzip CSS files
@@ -55,3 +60,4 @@ jobs:
       - name: Verify Output Files
         run: |
           ls -al ./dist
+
