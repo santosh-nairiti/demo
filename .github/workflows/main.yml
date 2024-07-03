@@ -1,4 +1,4 @@
-name: Example Workflow
+name: Build and Deploy
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,12 +16,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Use secret in workflow
-        env:
-          MY_SECRET: ${{ secrets.GH_TOKEN }}
-        run: |
-          echo "My secret token is $MY_SECRET"
-          # Use the secret in your commands or scripts
+      - name: Run Gulp to minify files
+        run: npx gulp
 
       - name: Commit and push changes
         env:
@@ -30,7 +26,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Add changes"
+          git commit -m "Add minified files"
           git push origin main
-
-
