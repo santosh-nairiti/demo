@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta name="author" content="SemiColonWeb">
+	<meta name="description" content="Get Canvas to build powerful websites easily with the Highly Customizable &amp; Best Selling Bootstrap Template, today.">
+
+	<!-- Font Imports -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+	<!-- Core Style -->
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Font Icons -->
+	<link rel="stylesheet" href="css/font-icons.css">
+
+	<!-- Plugins/Components CSS -->
+	<link rel="stylesheet" href="css/components/bs-select.css">
+
+	<!-- Niche Demos -->
+	<link rel="stylesheet" href="demos/doctors/doctors.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="css/custom.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Document Title
+	============================================= -->
+	<title>Shankari Ayurveda - Nadi Pariksha, Panchakarma</title>
+	<link rel="icon" type="image/x-icon" href="./images/fav-icon-shankari-ayurveda.png">
+	 <style>
+		 @media screen and(min-width: 360px) {
+			 .card-bo {
+				min-height: 300px;-->
+			 }
+			 	 .img-fluid.Treatments-image {
+					 height: 40vh;
+			 }
+		 }
+				 
+			  @media (min-width: 768px) {
+       				 .card-body {
+            				width: 90%;
+      				  }
+			  }
+			 @media screen and (max-width: 360px) {
+				 .card-body {
+            				width: 90%;
+			 }
+				 .img-fluid.Treatments-image {
+					 height: 60vh !important;
+					 width: auto;
+			 }
+			 }
+		 
+
+	</style>
+
+</head>
+
+<!-- stretched (body)
+============================================= -->
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper">
+
+		<!-- <header id="header" class="header-size-md dark transparent-header floating-header" data-sticky-shrink="false" data-responsive-class="not-dark">
+			<div id="header-wrap" class="border-0">
+				<div class="container rounded">
+					<div class="header-row justify-content-lg-between">
+						
+			
+						<div id="logo" class="me-lg-4 col-lg-3">
+							<a href="index.html">
+								<img class="logo-default ms-0 me-lg-5" src="data:image/png;base64,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" alt="Canvas Logo">
+								
+							</a>
+							<p class="ms-lg-0 m-0" style="color: white;">
+								Shankari Ayurveda Chikitsalayam
+								</p>
+						</div>
+
+
+						<nav class="primary-menu">
+
+							<ul class="menu-container">
+								<li class="menu-item"><a class="menu-link" href="./demo-doctors(1).html"><div>Home</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="./doctor.html"><div>Doctor</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="./General nadi-parikshna.html"><div>Nadi Pariksha</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="./premium-nadi-pariksha.html"><div>Nadi Pariksha</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="./panchakarma.html"><div>Panchakarma</div></a></li>
+								<li class="menu-item"><a class="menu-link" href="./contactUs.html"><div>Contact</div></a></li>
+							</ul>
+
+						</nav>
+
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header> -->
+
+
+		<nav class="navbar navbar-expand-lg fixed-top ps-lg-5 pe-lg-5" style="background-color: #0a3c3f; color: white; ">
+			<div class="container-fluid">
+				<a href="./index.html"><img src="./images/icons/Shankari_Logo-2.png" alt="Shankari Logo" style="width: 200px; height: auto;" class="m-lg-3 m-1">
+				</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white; background-color: #fff;">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse justify-content-end ms-lg-0 ms-3" id="navbarNav">
+				<ul class="navbar-nav text-white">
+				  <li class="nav-item">
+					<a class="nav-link active text-white pe-lg-3" aria-current="page" href="./index.html">Home</a>
+				  </li>
+				  <!-- <li class="nav-item">
+					<a class="nav-link text-white" href="./doctor.html">Doctor</a>
+				  </li> -->
+				  <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-white pe-lg-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  Treatments
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					  <li><a class="dropdown-item" href="./General nadi-parikshna.html">Nadi Pariksha</a></li>
+					  <li><a class="dropdown-item" href="./premium-nadi-pariksha.html">Premium Nadi Pariksha</a></li>
+<!-- 					  <li><a class="dropdown-item" href="./panchakarma.html">Panchakarma</a></li> -->
+					</ul>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link text-white" href="./contactUs.html">Contact</a>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		  </nav>
+
+		<!-- Hero
+		============================================= -->
+		<section id="slider" class="slider-element include-header" style="background: linear-gradient(90deg, rgba(34, 193, 195, 0.06), rgba(253, 187, 45, 0.1));">
+			<div class="container mt-lg-6">
+				<div class="row justify-content-between align-items-center py-lg-6 py-5">
+					<div class="col-lg-5 mb-4 mb-lg-0">
+						<img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="50">
+						<h1 class="display-3 fw-bold color all-ts mt-lg-0 mt-5 pt-lg-0 pt-5">Discover the <span class="underliner nocolor viewport-detect" data-delay="1000">Healing</u></span> Power of Ayurveda <img class="position-relative" style="top: -5px;" src="demos/doctors/images/icons/smile.svg" alt="..." width="50"></h1>
+						<p>Welcome to <strong> Shankari Ayurveda Chikitsalayam</strong>, where ancient wisdom meets modern healing. Our clinic, led by<br><strong> Dr. Sruthy P.R,</strong> offers a range of authentic Ayurvedic treatments designed to restore balance and promote holistic wellness. Discover the power of Ayurveda with personalized care and natural therapies.</p>
+						<a href="#target-id-treatmenets" class="button py-3 px-4 h-text-light rounded mx-0">Book an Appoinment<i class="bi-arrow-right ms-2 me-0"></i></a>
+					</div>
+					<div class="col-lg-6">
+						<!-- Gallery -->
+						<div class="row align-items-center g-4">
+							<div class="col-6">
+								<img src="https://static.wixstatic.com/media/ba45f1_c2ee10d91f1b4e4a93b4c64c1ef660ca~mv2.png/v1/fill/w_560,h_438,al_c,q_85,usm_0.33_1.00_0.00,enc_auto/Nadi%20Pariksha%20image.png" alt="Image" class="object-cover rounded-6">
+							</div>
+							<div class="col-6">
+								<img src="https://t4.ftcdn.net/jpg/05/90/17/23/360_F_590172388_eEZ8vGqNqAtYSNP7LcRTMyl0db5kemNX.jpg" alt="Image" class="object-cover rounded-6 mb-4">
+								<img src="https://economictimes.indiatimes.com/thumb/msid-95993667,width-1200,height-900,resizemode-4,imgsize-137592/ayurveda-and-sexual-health.jpg?from=mdr" alt="Image" class="object-cover rounded-6">
+							</div>
+						</div>
+						<!-- Gallery 
+						<div class="card hero-card border-0 z-3 scroll-detect" style="--cnvs-transitions: .3s linear; transform: translate(-40%, calc(-.6% * var(--cnvs-scroll-percent)));">
+							<div class="card-body p-4">
+								<div class="circle-stack d-flex mb-3" style="--cnvs-circle-stack-size: 2.4rem; --cnvs-circle-stack-border-size: 3px; --cnvs-circle-stack-inset-ratio: 0.35">
+									<img src="images/blocks/preview/avatar/1.jpg" alt="Avatar Image">
+									<img src="images/blocks/preview/avatar/2.jpg" alt="Avatar Image">
+									<img src="images/blocks/preview/avatar/3.jpg" alt="Avatar Image">
+									<img src="images/blocks/preview/avatar/4.jpg" alt="Avatar Image">
+								</div>
+								<h5 class="mb-3 fw-normal small">Get <strong>20%</strong> Instant cahback on your <br> First Appoinmen Booking.</h5>
+								<a href="#" class="button button-mini h-bg-dark m-0 rounded-1">Check Offers</a>
+							</div>
+						</div>-->
+						<img src="demos/doctors/images/icons/capsule.svg" alt=".." class="position-absolute z-1 top-0 mt-3 op-01" width="70" style="left: -90px;">
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+			<div class="content-wrap py-0">
+
+				<!-- <div id="section-search" class="section my-0 bg-transparent">
+					<div class="container py-lg-5">
+						<div class="row">
+							<div class="col-md-8 col-9">
+								<h2 class="display-4 text-rotater" data-separator="," data-rotate="fadeInUpSmall faster bg-color-2 bg-opacity-50 px-2" data-speed="3500">Book the local <span class="t-rotate d-inline nocolor">Doctors,Specialist,Services</span><br>who take your Care.</h2>
+							</div>
+						</div>
+						<div class="position-relative bg-contrast-0 rounded border border-width-3 border-color mt-4">
+							<img src="demos/doctors/images/hand-mobile.svg" alt=".." class="hand-mobile-img">
+							<div class="row flex-column flex-lg-row align-items-center">
+								<div class="col-lg-auto flex-grow-1">
+									<div class="row gx-0 gx-lg-3">
+										<div class="col-lg-5 py-2 py-lg-0">
+											<div class="input-group align-items-center">
+												<span class="input-group-text pe-0 bg-transparent border-0" id="inputGroup-doctors"><i class="fs-5 bi bi-search-heart"></i></span>
+												<select class="selectpicker" data-live-search="true" title="Doctors, Conditions, Specialist.." data-container="body" data-width="fit" data-size="8">
+													<option>Dermatologist</option>
+													<option>General practitioner</option>
+													<option>Pediatrician</option>
+													<option>Surgeon</option>
+													<option>Neurologist</option>
+													<option>Psychiatrist</option>
+													<option>Oncologist</option>
+													<option>Cardiologist</option>
+													<option>Orthopedic surgeon</option>
+													<option>Radiologist</option>
+													<option>Anesthesiologist</option>
+													<option>Endocrinologist</option>
+													<option>Gastroenterologist</option>
+													<option>Ophthalmologist</option>
+													<option>Pathologist</option>
+													<option>Pulmonologist</option>
+													<option>Ophthalmology</option>
+													<option>Dentist</option>
+													<option>Podiatrists</option>
+													<option>Rheumatologist</option>
+													<option>Otorhinolaryngology</option>
+													<option>Internal medicine</option>
+													<option>Otolaryngologist</option>
+													<option>Dermatology</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-lg-3 py-2 py-lg-0" data-class="down-lg:border-top up-lg:border-start">
+											<div class="input-group align-items-center">
+												<span class="input-group-text pe-0 bg-transparent border-0" id="inputGroup-city"><i class="fs-5 bi bi-geo-alt-fill"></i></span>
+												<select class="selectpicker" data-live-search="true" title="City, Locations.." data-container="body">
+													<option>New York</option>
+													<option>Oklahoma City</option>
+													<option>Kansas City</option>
+													<option>Salt Lake City</option>
+													<option>Chicago</option>
+													<option>Houston</option>
+													<option>Los Angeles</option>
+													<option>Dallas</option>
+													<option>Philadelphia</option>
+													<option>Phoenix</option>
+													<option>San Jose</option>
+													<option>Detroit</option>
+													<option>San Diego</option>
+													<option>Baltimore</option>
+													<option>Jacksonville</option>
+													<option>San Antonio</option>
+													<option>Albuquerque</option>
+													<option>San Francisco</option>
+													<option>Seattle</option>
+													<option>Denver</option>
+													<option>Indianapolis</option>
+													<option>Milwaukee</option>
+													<option>Charlotte</option>
+													<option>Tucson</option>
+													<option>Austin</option>
+													<option>Las Vegas</option>
+													<option>Fort Worth</option>
+													<option>El Paso</option>
+													<option>Sacramento</option>
+													<option>Fresno</option>
+													<option>Atlanta</option>
+													<option>Raleigh</option>
+													<option>Tulsa</option>
+													<option>Colorado Springs</option>
+													<option>Omaha</option>
+													<option>Virginia Beach</option>
+													<option>Wichita</option>
+													<option>Mesa</option>
+													<option>Louisville</option>
+													<option>Memphis</option>
+													<option>Bakersfield</option>
+													<option>Columbus</option>
+													<option>Arlington</option>
+													<option>Nashville</option>
+													<option>Portland</option>
+													<option>New Orleans</option>
+													<option>Riverside</option>
+													<option>Winston-Salem<option>Boston</option>
+													<option>Anchorage</option>
+													<option>Orlando</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-lg-4 py-2 py-lg-0" data-class="down-lg:border-top up-lg:border-start">
+											<div class="input-group align-items-center">
+												<span class="input-group-text pe-0 bg-transparent border-0" id="inputGroup-services"><i class="fs-5 bi bi-clipboard2-heart-fill"></i></span>
+												<select class="selectpicker" title="Type of Services" data-live-search="true" data-container="body" multiple data-selected-text-format="count">
+													<option>Asthma</option>
+													<option>Rash</option>
+													<option>Topical burns</option>
+													<option>Fevers or colds</option>
+													<option>Nausea</option>
+													<option>Diarrhea or gastrointestinal distress</option>
+													<option>Body pains and aches</option>
+													<option>Headaches</option>
+													<option>Ear or sinus pain</option>
+													<option>Coughs and sore throats</option>
+													<option>Bumps, cuts, and scrapes</option>
+													<option>Allergic reactions</option>
+													<option>Urinary issues</option>
+													<option>Diabetes</option>
+													<option>Eye pain or irritation</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-auto">
+									<div class="input-group input-group-btn border-width-3 border-color" data-class="down-lg:border-top up-lg:border-start">
+										<button class="button bg-color-2 color h-bg-color h-text-light m-0 h-100 py-3 p-lg-4 px-4 w-100" type="button">Find Doctors</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<div class="section bg-transparent mt-lg-0 mb-lg-0 pb-lg-0">
+					<div class="container">
+						<div class="col-md-12 align-items-center justify-content-center text-center">
+							<h2 class="display-4 mb-3">Our Specialized Offerings</h2>
+							
+							<div class="line my-4"></div>
+						</div>
+						<div class="row justify-content-center">
+							<div class="col-md-9 text-center">
+								<h4 class="m-0">Nadi Pariksha </h4><p>Nadi Pariksha is a traditional Ayurvedic pulse diagnosis technique used to assess your body’s health and imbalances. During the consultation, Dr. Sruthy will evaluate your pulse to understand your unique constitution and recommend personalized treatments to restore harmony and vitality.</p>
+								<h4 class="m-0">Panchakarma Treatments </h4><p>Panchakarma is a cornerstone of Ayurvedic therapy, designed for detoxification and renewal. Our treatments include Nasya (nasal therapy), Vamana (therapeutic vomiting), and more, each tailored to cleanse and balance your body, mind, and spirit. Experience the transformative effects of Panchakarma at Shankari Ayurveda.</p>
+							</div>
+						</div>
+						<!-- new -->
+
+	
+
+
+						<!-- </div> -->
+						<!-- new ended -->
+
+
+
+
+
+
+
+
+
+<!-- 
+						<div class="row row-cols-xl-5 row-cols-lg-4 row-cols-sm-2 row-cols-1 services-categories g-4 align-items-center justify-content-center">
+							<div class="services-category-item">
+								<a href="#" class="card border-0 rounded-6">
+									<div class="card-body justify-content-center align-items-center px-4 py-5 text-center">
+										<h4 class="my-1">Nadi Pariksha</h4>
+										<small class="text-smaller">Eczema, Hair Loss, Acne, Skin cancer..</small>
+									</div>
+								</a>
+							</div>
+							<div class="services-category-item">
+								<a href="#" class="card border-0 rounded-6">
+									<div class="card-body justify-content-center align-items-center px-4 py-5 text-center">
+										<h4 class="my-1">Panchakarma Premium</h4>
+										<small class="text-smaller">Neuromuscular disorders, ADD, brain tumors..</small>
+									</div>
+								</a>
+							</div>
+
+							<div class="services-category-item">
+								<a href="#" class="card border-0 rounded-6">
+									<div class="card-body justify-content-center align-items-center px-4 py-5 text-center">
+										<h4 class="my-1">Panchakarma</h4>
+										<small class="text-smaller">Neuromuscular disorders, ADD, brain tumors..</small>
+									</div>
+								</a>
+							</div>
+						</div> -->
+					</div>
+
+				<div class="section my-0 m-0" id="target-id-treatmenets">
+					<div class="container">
+					<!--	<h2 class="display-4 mb-3 text-center">Treatments</h2>
+							
+							<div class="line my-4"></div> -->
+						<div class="row justify-content-center mb-5">
+							<div class="col-md-9 text-center">
+								
+							</div>
+							<div class="col-12">
+								<ul class="nav nav-pills mb-0 justify-content-center" id="categories-tab" role="tablist">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link active" id="pills-pathologist-tab" data-bs-toggle="pill" data-bs-target="#pills-pathologist" type="button" role="tab" aria-controls="pills-pathologist" aria-selected="true">General Nadi Pariksha</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="pills-orthopedic-tab" data-bs-toggle="pill" data-bs-target="#pills-orthopedic" type="button" role="tab" aria-controls="pills-orthopedic" aria-selected="false">Premium Nadi Pariksha</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="pills-psychiatrist-tab" data-bs-toggle="pill" data-bs-target="#pills-psychiatrist" type="button" role="tab" aria-controls="pills-psychiatrist" aria-selected="false">Panchakarma</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<div class="tab-content px-lg-0" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-pathologist" role="tabpanel" aria-labelledby="pills-pathologist-tab" tabindex="0">
+      
+	   <div class="row justify-content-between align-items-stretch">
+        <div class="col-md-5 ms-lg-0 ms-3">
+            <img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="36">
+            <h2 class="display-5">General Nadi Pariksha</h2>
+            <h4 class="mb-lg-3 mb-2">Pulse Diagnosis:</h4>
+            <p>Traditional Ayurvedic method to assess health and imbalances.</p>
+            <h4 class="mb-lg-3 mb-2">Personalized Insights:</h4>
+            <p>Evaluates your unique constitution for tailored treatments.</p>
+            <h4 class="mb-lg-3 mb-2">Harmony Restoration:</h4>
+            <p> Recommends lifestyle adjustments for balance and vitality.</p>
+            <a href="./General nadi-parikshna.html">
+                <button type="button" class="button py-3 px-4 h-text-light rounded mx-0">Book an Appointment</button>
+            </a>
+        </div>
+		   <div class="col-md-2"></div>
+        <div class="col-md-5 d-flex align-items-center justify-content-center">
+           <!-- <img src="./images/icons/General nadi.png" alt="" class="img-fluid Treatments-image" style="height:80vh;"> -->
+		<img src=".//images/icons/general-nadi-img.png">
+        </div>
+    </div>
+
+    </div>
+    <div class="tab-pane fade" id="pills-orthopedic" role="tabpanel" aria-labelledby="pills-orthopedic-tab" tabindex="0">
+        
+
+	    <div class="container">
+    <div class="row justify-content-between align-items-stretch">
+        <div class="col-md-5">
+            <img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="36">
+            <h2 class="display-5">Premium Nadi Pariksha</h2>
+            <h4 class="mb-lg-3 mb-2">Thorough Examination:</h4>
+            <p>Comprehensive pulse diagnosis with advanced techniques.</p>
+            <h4 class="mb-lg-3 mb-2">Integrated Approach:</h4>
+            <p>Combines yoga, dietary advice, and lifestyle counseling.</p>
+            <h4 class="mb-lg-3 mb-2">Holistic Health:</h4>
+            <p>Provides a deeper, holistic wellness path.</p>
+            <a href="./premium-nadi-pariksha.html">
+                <button type="button" class="button py-3 px-4 h-text-light rounded mx-0">Book an Appointment</button>
+            </a>
+        </div>
+	    <div class="col-md-2"></div>
+        <div class="col-md-5 d-flex align-items-center justify-content-center m-0">
+            <!-- <img src="./images/icons/Premium nadi.jpg" alt="" class="img-fluid Treatments-image" style="height:80vh;"> -->
+		<img src="./images/icons/premium-img-1.1.png">
+        </div>
+    </div>
+</div>
+    </div>
+    <div class="tab-pane fade" id="pills-psychiatrist" role="tabpanel" aria-labelledby="pills-psychiatrist-tab" tabindex="0">
+        <div class="row justify-content-between align-items-stretch" style="margin: 0;">
+            <div class="col-md-5" style="padding-left: 15px; padding-right: 15px;">
+                <img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="36">
+                <h2 class="display-5">Panchakarma Treatments</h2>
+                <h4 class="mb-lg-3 mb-2">Detoxification:</h4>
+                <p>Cleanses toxins and rejuvenates tissues.</p>
+                <h4 class="mb-lg-3 mb-2">Customized Therapies:</h4>
+                <p>Includes Nasya, Vamana, and other tailored treatments.</p>
+                <h4 class="mb-lg-3 mb-2">Mind-Body Balance:</h4>
+                <p>Promotes overall wellness and prevention of health issues.</p>
+                <h1>Coming soon...</h1>
+            </div>
+		<div class="col-md-2"></div>
+            <div class="col-md-5 d-flex align-items-center justify-content-center m-0">
+          <!--      <img src="./images/icons/panchakarma-latest.jpg" alt="" class="img-fluid Treatments-image" style="height:80vh;"> -->
+		    <img src="./images/icons/panchakarma-img-1.1.png" alt="img">
+            </div>
+        </div>
+    </div>
+</div>
+
+					</div>
+				</div>
+<!-- 
+				<div class="section mt-0 bg-transparent doctor-lists">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-9 text-center">
+								<h2 class="display-4 mb-5">Meet with our Experts</h2>
+							</div>
+						</div>
+						<div class="position-relative scroll-detect" style="--cnvs-transitions: .3s linear; transform: translate(calc(-.1% * calc(var(--cnvs-scroll-percent) * .3)), 0);">
+							<div class="row row-cols-lg-6 row-cols-sm-2 row-cols-1 g-4" style="transform: translateX(1%);">
+								<div class="col">
+									<img src="demos/doctors/images/experts/1.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">D.W. Coffman</h4>
+									<small class="fw-light">Psychologists</small>
+								</div>
+								<div class="col">
+									<img src="demos/doctors/images/experts/2.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">D.W. Coffman</h4>
+									<small class="fw-light">Psychologists</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/3.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">R.G. Everhart</h4>
+									<small class="fw-light">Anesthesiology</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/4.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">D.B. Truluck</h4>
+									<small class="fw-light">Cardiology</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/5.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">W.L. Popwell</h4>
+									<small class="fw-light">Chiropractic</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/6.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">P.M. Adres</h4>
+									<small class="fw-light">Chiropractic</small>
+								</div>
+							</div>
+						</div>
+						<div class="position-relative scroll-detect" style="--cnvs-transitions: .3s linear; transform: translate(calc(.1% * calc(var(--cnvs-scroll-percent) * .3)), 0);">
+							<div class="row flex-row-reverse row-cols-lg-6 row-cols-sm-2 row-cols-1 g-4 mt-0" style="transform: translateX(-1%);">
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/7.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">L.D. Plack</h4>
+									<small class="fw-light">Cardiology</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/8.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">M.L. Paine</h4>
+									<small class="fw-light">Dermatology</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/9.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">M.E. Pullen</h4>
+									<small class="fw-light">Surgery</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/10.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">W.L. Shotts</h4>
+									<small class="fw-light">Neurology</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/11.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">M.S. Sugar</h4>
+									<small class="fw-light">Ophthalmology</small>
+								</div>
+
+								<div class="col">
+									<img src="demos/doctors/images/experts/12.jpg" alt="..." class="rounded-6 mb-2">
+									<h4 class="mb-0">M.S. Sugar</h4>
+									<small class="fw-light">Ophthalmology</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<!-- <div class="section bg-color dark my-0">
+					<div class="container py-lg-5">
+						<div class="row g-4 justify-content-around">
+							<div class="col-md-3 col-6">
+								<h3 class="display-3 text-white mb-1">75+</h3>
+								<small class="color-2 text-uppercase ls-2 text-smaller">Available Countries</small>
+							</div>
+
+							<div class="col-md-3 col-6">
+								<h3 class="display-3 text-white mb-1">634+</h3>
+								<small class="color-2 text-uppercase ls-2 text-smaller">Available Experts</small>
+							</div>
+
+							<div class="col-md-3 col-6">
+								<h3 class="display-3 text-white mb-1">23+</h3>
+								<small class="color-2 text-uppercase ls-2 text-smaller">Winning Awards</small>
+							</div>
+
+							<div class="col-md-3 col-6">
+								<h3 class="display-3 text-white mb-1">95%</h3>
+								<small class="color-2 text-uppercase ls-2 text-smaller">5 Star Reviews</small>
+							</div>
+						</div>
+						<img src="demos/doctors/images/section.jpg" alt=".." class="my-5">
+						<div class="row align-items-end justify-content-between">
+							<div class="col-md-5">
+								<img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="36">
+								<h3 class="display-6 mb-md-0">People pay the doctor for his trouble, for his kindness they still remain in his debt.</h3>
+							</div>
+							<div class="col-md-5">
+								<p class="mb-0">Enthusiastically exploit cutting-edge value with highly efficient e-business. Assertively promote integrated testing procedures vis-a-vis magnetic "outside the box" thinking.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="section bg-transparent mt-0">
+					<div class="container">
+						<div class="row gy-4 justify-content-around align-items-center">
+							<div class="col-md-5">
+								<div class="widget-img position-relative">
+									<img src="demos/doctors/images/widget-img.png" alt="..">
+								</div>
+							</div>
+							<div class="col-md-5">
+								<img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="36">
+								<h2 class="display-4 mb-3">Subscribe to Our Newsletter</h2>
+								<p class="">Holisticly supply plug-and-play sources with client-based testing procedures. Assertively leverage existing user friendly infrastructures through ethical strategic theme areas.</p>
+								<div class="widget subscribe-widget" data-loader="button">
+
+									<div class="widget-subscribe-form-result"></div>
+									<form id="widget-subscribe-form" action="include/subscribe.php" method="post" class="mb-0 d-flex bg-color-2 rounded-pill p-2 bg-opacity-50">
+										<input type="email" id="widget-subscribe-form-email" name="widget-subscribe-form-email" class="form-control bg-transparent border-0 required email ps-3" placeholder="Your Email Address">
+										<button class="button button-large rounded-pill m-0" type="submit">Subscribe</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<!-- <div class="section dark bg-color my-0">
+					<div class="container">
+						<div class="row align-items-center justify-content-between">
+							<div class="col-md-4 mt-4">
+								<img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="36">
+								<h3 class="display-6">Get in touch with Us.</h3>
+								<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, a hic? Velit aliquam dolorum maxime corporis blanditiis sed dignissimos animi?</p>
+
+								<div class="divider divider-xs fw-light font-body text-uppercase mb-5 op-05 ms-0" style="--cnvs-divider-border-color: rgba(var(--cnvs-contrast-rgb), 0.2)"><div class="divider-text">Or</div></div>
+
+								<h3 class="fs-6 fw-light text-uppercase op-07 mb-2">Give us a Quick Call</h3>
+								<h2 class="display-4">+0 (11) 222 333</h2>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-widget">
+
+									<div class="form-result"></div>
+
+									<form class="row mb-0" id="template-contactform" name="template-contactform" action="include/form.php" method="post">
+										<div class="form-process">
+											<div class="css3-spinner">
+												<div class="css3-spinner-scaler"></div>
+											</div>
+										</div>
+
+										<div class="col-12 form-group">
+											<input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="form-control border-form-control border-light border-opacity-50 py-3 required" placeholder="Full Name..">
+										</div>
+
+										<div class="col-12 form-group">
+											<input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="email form-control border-form-control border-light border-opacity-50 py-3 required " placeholder="Email Address..">
+										</div>
+
+										<div class="col-12 form-group">
+											<input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="form-control border-form-control border-light border-opacity-50 py-3" placeholder="Phone Number..">
+										</div>
+
+										<div class="col-12 form-group">
+											<textarea class="required form-control border-form-control border-light border-opacity-50 py-3" id="template-contactform-message" name="template-contactform-message" rows="2" cols="30" placeholder="Type Your Message Here.."></textarea>
+										</div>
+
+										<div class="col-12 form-group d-none">
+											<input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="form-control border-form-control border-light border-opacity-50 py-4">
+										</div>
+
+										<div class="col-12 form-group">
+											<button class="button button-large button-light h-text-dark h-bg-color-2 rounded ms-0 mt-3" type="submit" id="template-contactform-submit" name="template-contactform-submit" value="submit">Send Message</button>
+										</div>
+
+										<input type="hidden" name="prefix" value="template-contactform-">
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</section>
+	       <section>
+		       <div class="container">
+			       <div class="row justify-content-between align-items-center vh-100">
+    <div class="col-md-5 text-center text-md-start d-flex flex-column justify-content-center">
+        <img src="demos/doctors/images/icons/wave.svg" alt="..." class="position-absolute top-0 start-0 translate-middle d-none d-md-block" width="36">
+        <h2 class="display-5">Meet our Expert Doctor</h2>
+        <h3 class="m-0 pb-lg-2">Dr. Sruthy P.R</h3>
+        <!--<div class="line my-4"></div>-->
+        <div class="d-inline-flex">
+            <p class="m-0 pb-lg-2"><strong>BAMS, Senior Nadi Vaidya, Ayurveda Physician</strong></p>
+        </div>
+        <p>Dr.Sruthy is a dedicated Ayurvedic practitioner with extensive training and experience. Her approach integrates traditional Ayurvedic principles with contemporary practices to provide comprehensive health solutions. Dr. Sruthy’s commitment to patient care and her deep understanding of Ayurveda ensures a healing journey tailored to each individual's needs.</p>
+    </div>
+    <div class="col-md-5 d-flex justify-content-center align-items-center">
+        <img src="https://shreemaathaaarogyadhaamam.com/static/img/consultant/DrSruthyJi.png" alt=".." class="rounded-6">
+    </div>
+</div>
+		       </div>
+	       </section>
+
+		<section>
+			<div class="container mb-5 mt-5">
+				<h2 class="display-4 mb-3 text-center">Testimonials</h2>
+							
+							<div class="line my-4"></div>
+				<div class="row">
+					<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
+						<div class="carousel-inner">
+<div class="carousel-item active">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Ramya Errabelli</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">I'm a doctor & I was suffering with chronic ailments in my life . my cousin suggested me Sri Sri tattvapanchakarma treatment. After treatment of madam I got relief in 15 days only.</p>
+        </div>
+    </div>
+</div>
+						  
+
+	<div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Vamsi Krish</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">I found that Ayurveda is about a treatment ® Special mention to ‘Dr.sruthy’ I strongly recommend this clinic for anyone who has health related issues </p>
+        </div>
+    </div>
+</div>
+		<div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Pooja Sonthalia</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">I am very thankful to Shruthiji for advising me to go for detox...it was very helpful and I much needed for my body....it was little difficult initially but later it was comfortable...and after detox, </p>
+        </div>
+    </div>
+</div>
+							<div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">VenkataSubbarao Paruchuri</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">I approached Dr.Shruti Madam in Sri Sri Ayurvedic clinic, She had done treatment by using crystal once in a month. Treatment went very well and my hand is very comfortable to do any activity now.</p>
+        </div>
+    </div>
+</div>
+						  <div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Dabbiru Vidyavathi</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">For severe back pain, I sought treatment at Sri Sri Tattva Panchakarma. I experienced great results. I am grateful to Dr. Shruthi and her team for treatment and guidance.</p>
+        </div>
+    </div>
+</div>
+						  <div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Hemanth G</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">Amazing experience with Dr. Sruthy, a very rare nadi pariksha expert at these times. She is very advanced with nadi diagnosis and Sidha Chikitsha (a unique treatment which she does for critical patients).</p>
+        </div>
+    </div>
+</div>
+						  <div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Yarram Sudhir kumar Reddy</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">I have recently taken online detox offered by Dr. Sruthy and staff. It is an amazing experience :) I feel a lot lighter. They took very good care during the detox.</p>
+        </div>
+    </div>
+</div>
+
+						 <div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Sailaja Anand</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">Consultation with Dr. Shruti ji regarding some nagging digestion issues. I had lost weight and also my sugar levels have come to normal without any medication.</p>
+        </div>
+    </div>
+</div>
+
+						  <div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Chitra Balu</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">Excellent services, cordial, friendly, family atmosphere. Best doctors!! Diagnosis of Dr. Shruthi is excellent. Whenever I show to Dr. Shruthi. I have stopped going to Allopathic doctors and medicines.</p>
+        </div>
+    </div>
+</div>
+
+						 <div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Manikya Lakshmi</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">I went to Dr. Sruthy. with acute wheeze and bronchitis. I recovered quite well after taking her treatment. For the last two years, I barely felt the need for any medicine related to these issues.</p>
+        </div>
+    </div>
+</div>
+
+						 <div class="carousel-item">
+    <div class="card text-center">
+        <div class="text-center">
+            <img src="https://hounslowpassportphotoshop.co.uk/images/blankimg.png" class="card-img-top mt-lg-5" alt="..." style="height: 90px; width: 90px;">
+        </div>
+        <div class="card-body" style="height: 250px; width: 80%; margin: 0 auto;">
+            <h4 class="mb-0">Hemanth Kotra</h4>
+            <img src="https://t3.ftcdn.net/jpg/05/31/76/76/360_F_531767656_9ZYTdKAhUXatTUAUp7iYi6coq9dy3nSF.jpg" alt="" style="width: auto; height: 30px;">
+            <p class="card-text">Dr. Shruthy has been really helpful for us always. My baby had severe cold for a few weeks, and he was able to get better only after following their treatment. Thanks for all the help.</p>
+        </div>
+    </div>
+</div>
+
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+						  <span class="carousel-control-prev-icon" style="background-color: black; border-radius: 50px;" aria-hidden="true"></span>
+						  <span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+						  <span class="carousel-control-next-icon" style="background-color: black; border-radius: 50px;" aria-hidden="true"></span>
+						  <span class="visually-hidden">Next</span>
+						</button>
+					  </div>
+				</div>
+			</div>
+		</section>
+		<!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="bg-color dark border-width-1">
+			<div class="container">
+
+				<!-- Footer Widgets
+				============================================= -->
+				<div class="footer-widgets-wrap">
+					<div class="row gx-4 gy-5">
+						<div class="col-lg-8 col-6 d-flex justify-content-center">
+							<div class="container m-0 p-0 d-flex align-items-center">
+								<img src="./images/icons/Shankari_Logo-2.png" alt="Shankari Logo" style="width: 250px; height: auto;">
+							</div>
+						</div>
+					
+						<div class="col-lg-4 col-sm-6 d-flex justify-content-center">
+							<div class="widget">
+								<h4 class="text-uppercase mb-4">Need Help?</h4>
+								<ul class="list-unstyled">
+									<li class="mb-3">
+										<a href="tel:+91 9959211800" class="d-flex">
+											<i class="me-3 bi-telephone-fill"></i>+91 9908157287
+										</a>
+									</li>
+									<li class="mb-3">
+										<a href="mailto:shankariayurveda@shankariayur.com" class="d-flex">
+											<i class="me-3 bi-envelope-fill"></i>shankariayurveda@shankariayur.com
+										</a>
+									</li>
+									<li class="mb-3 d-flex">
+										<i class="me-3 bi-calendar-week-fill"></i>Mon - Sat | 09:00 - 16:00
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div><!-- .footer-widgets-wrap end -->
+			</div>
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights" class="bg-transparent border-top op-08">
+				<div class="container">
+
+					<div class="row justify-content-center">
+						<div class="col-md-auto">
+							All Rights Reserved shankariayur
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- JavaScripts
+	============================================= -->
+	<script src="js/plugins.min.js"></script>
+	<script src="js/functions.bundle.js"></script>
+
+	<!-- Select Splitter Plugin -->
+	<script src="js/components/selectsplitter.js"></script>
+	<script src="js/components/bs-select.js"></script>
+
+</body>
+</html>
