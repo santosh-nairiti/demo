@@ -40,17 +40,10 @@ jobs:
             gzip -c "./dist/js/$base.min.js" > "./dist/js/$base.min.js.gz"
           done
 
-      - name: Minify HTML files
-        run: |
-          for file in ./*.html; do
-            base=$(basename "$file" .html)
-            npx html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html --input-dir ./ --output-dir ./dist/html
-          done
-
       - name: Gzip Minified HTML files
         run: |
           for file in ./dist/html/*.html; do
-            gzip -c "$file" > "$file.gz"
+            gzip -c  "./dist/js/$base.min.html" > "./dist/js/$base.min.html.gz"
           done
 
       - name: Minify and Gzip CSS files
