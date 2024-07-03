@@ -3,10 +3,10 @@ name: Node.js CI
 on:
   push:
     branches:
-      - "main"
+      - main
   pull_request:
     branches:
-      - "main"
+      - main
 
 jobs:
   build:
@@ -16,23 +16,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '14'  # Use a valid Node.js version (e.g., 14.x.x)
 
-      - name: Install Tools
+      - name: Install UglifyJS and GzipJS
         run: |
           npm install uglify-js -g
           npm install gzip-js -g
 
-      - name: Minify, Uglify and Gzip JS files
+      - name: Create Dist Directory
+        run: mkdir -p ./dist   # Create a directory to store minimized files
+
+      - name: Minify and Uglify JS files
         run: |
-          mkdir -p ./dist   # Create a directory to store minimized files
           for file in ./*.js; do
             base=$(basename "$file" .js)
             npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle
-            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz"
+          done
+        working-directory: ${{ github.workspace }}
+
+      - name: Gzip JS files
+        run: |
+          for file in ./dist/*.min.js; do
+            gzip -c "$file" > "$file.gz"
           done
         working-directory: ${{ github.workspace }}
 
