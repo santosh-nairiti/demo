@@ -3,10 +3,10 @@ name: Node.js CI
 on:
   push:
     branches:
-      - main
+      - "main"
   pull_request:
     branches:
-      - main
+      - "main"
 
 jobs:
   build:
@@ -16,43 +16,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20.14.0'
 
-      - name: Install UglifyJS and GzipJS
+      - name: Install Tools
         run: |
           npm install uglify-js -g
           npm install gzip-js -g
 
-      - name: Create Dist Directories
+      - name: Minify, Uglify and Gzip JS files
         run: |
-          mkdir -p ./dist/js
-          mkdir -p ./dist/html
-          mkdir -p ./dist/css
-
-      - name: Minify and Gzip JS files
-        run: |
+          mkdir -p ./dist   # Create a directory to store minimized files
           for file in ./*.js; do
             base=$(basename "$file" .js)
-            npx uglify-js "$file" -o "./dist/js/$base.min.js" --compress --mangle
-            gzip -c "./dist/js/$base.min.js" > "./dist/js/$base.min.js.gz"
+            npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle
+            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz"
           done
-
-      - name: Gzip Minified HTML files
-        run: |
-          for file in ./dist/html/*.html; do
-            gzip -c  "./dist/js/$base.min.html" > "./dist/js/$base.min.html.gz"
-          done
-
-      - name: Minify and Gzip CSS files
-        run: |
-          for file in ./*.css; do
-            npx clean-css-cli "$file" -o "./dist/css/$(basename $file .css).min.css"
-            gzip -c "./dist/css/$(basename $file .css).min.css" > "./dist/css/$(basename $file .css).min.css.gz"
-          done
+        working-directory: ${{ github.workspace }}
 
       - name: Verify Output Files
         run: |
           ls -al ./dist
+        working-directory: ${{ github.workspace }}
