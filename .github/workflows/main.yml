@@ -29,13 +29,3 @@ jobs:
 
     - name: Run Gulp tasks
       run: npx gulp
-
-    - name: Commit and push changes
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add .
-        git commit -m "Add minified files"
-        git push origin main
