@@ -13,30 +13,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Repository ni checkout cheyandi
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Node.js ni install cheyandi
         uses: actions/setup-node@v2
         with:
           node-version: '20.14.0'
 
-      - name: Install Tools
+      - name: Tools ni install cheyandi
         run: |
           npm install uglify-js -g
           npm install gzip-js -g
 
-      - name: Minify, Uglify and Gzip JS files
+      - name: JS files unnaayi ani check cheyandi
         run: |
-          mkdir -p ./dist   # Create a directory to store minimized files
-          for file in ./*.js; do
+          echo "Repository lo unna JS files list:"
+          find . -type f -name "*.js"
+        working-directory: ${{ github.workspace }}
+
+      - name: Minify, Uglify, mariyu Gzip JS files
+        run: |
+          mkdir -p ./dist   # Minimized files ni store cheyatam kosam oka directory create cheyandi
+          for file in $(find . -type f -name "*.js"); do
             base=$(basename "$file" .js)
-            npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle
-            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz"
+            echo "Processing $file"
+            npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle || { echo "Uglify failed for $file"; exit 1; }
+            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz" || { echo "Gzip failed for $file"; exit 1; }
           done
         working-directory: ${{ github.workspace }}
 
-      - name: Verify Output Files
+      - name: Output Files ni verify cheyandi
         run: |
+          echo "dist directory lo content:"
           ls -al ./dist
         working-directory: ${{ github.workspace }}
