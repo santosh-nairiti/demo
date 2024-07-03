@@ -1,0 +1,22 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Dist Directory
+        run: mkdir -p ./dist   # Create a directory to store minimized files
+
+      # Add more steps for Node.js setup, installation, and build tasks as needed
