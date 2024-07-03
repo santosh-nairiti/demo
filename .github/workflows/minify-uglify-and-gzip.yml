@@ -26,39 +26,17 @@ jobs:
           npm install uglify-js -g
           npm install gzip-js -g
 
-      - name: Debug JS files
-        run: |
-          echo "Listing all JS files in the repository:"
-          find . -type f -name "*.js"
-        working-directory: ${{ github.workspace }}
-
       - name: Minify, Uglify and Gzip JS files
         run: |
           mkdir -p ./dist   # Create a directory to store minimized files
-          for file in $(find . -type f -name "*.js"); do
+          for file in ./*.js; do
             base=$(basename "$file" .js)
-            echo "Processing $file"
-            npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle || { echo "Uglify failed for $file"; exit 1; }
-            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz" || { echo "Gzip failed for $file"; exit 1; }
+            npx uglify-js "$file" -o "./dist/$base.min.js" --compress --mangle
+            gzip -c "./dist/$base.min.js" > "./dist/$base.min.js.gz"
           done
         working-directory: ${{ github.workspace }}
 
       - name: Verify Output Files
         run: |
-          echo "Contents of the dist directory:"
           ls -al ./dist
-        working-directory: ${{ github.workspace }}
-
-      - name: Verify Minified Files
-        run: |
-          for file in ./dist/*.min.js; do
-            echo "Minified file: $file"
-          done
-        working-directory: ${{ github.workspace }}
-
-      - name: Verify Gzipped Files
-        run: |
-          for file in ./dist/*.min.js.gz; do
-            echo "Gzipped file: $file"
-          done
         working-directory: ${{ github.workspace }}
