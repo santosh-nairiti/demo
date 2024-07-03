@@ -19,7 +19,7 @@ jobs:
       - name: Install Node.js and npm
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Adjust Node.js version as needed
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
@@ -28,9 +28,11 @@ jobs:
         run: npx gulp
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add dist
           git commit -m "Add minified files"
-          git push
+          git push origin main
