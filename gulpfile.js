@@ -1,31 +1,46 @@
 const gulp = require('gulp');
+const minifyCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
-const cleanCSS = require('gulp-clean-css');
 const gzip = require('gulp-gzip');
+const path = require('path');
 
-// Task to minify JavaScript files
-gulp.task('minify-js', function() {
-    return gulp.src('src/**/*.js')  // Corrected path to 'src' directory
+// Paths
+const paths = {
+    css: './src/css/*.css',
+    js: './src/js/*.js',
+    dist: './dist'
+};
+
+// Minify CSS
+gulp.task('minify-css', () => {
+    return gulp.src(paths.css)
+        .pipe(minifyCSS())
+        .pipe(gulp.dest(path.join(paths.dist, 'css')));
+});
+
+// Minify JS
+gulp.task('minify-js', () => {
+    return gulp.src(paths.js)
         .pipe(uglify())
-        .pipe(gulp.dest('dist/js')); // Output directory for JavaScript files
+        .pipe(gulp.dest(path.join(paths.dist, 'js')));
 });
 
-// Task to minify CSS files
-gulp.task('minify-css', function() {
-    return gulp.src('src/**/*.css')  // Corrected path to 'src' directory
-        .pipe(cleanCSS())
-        .pipe(gulp.dest('dist/css')); // Output directory for CSS files
-});
-
-// Task to gzip files (optional)
-gulp.task('gzip', function() {
-    return gulp.src(['dist/**/*.js', 'dist/**/*.css'])
+// Gzip CSS
+gulp.task('gzip-css', () => {
+    return gulp.src(path.join(paths.dist, 'css/*.css'))
         .pipe(gzip())
-        .pipe(gulp.dest('dist')); // Output directory for gzipped files
+        .pipe(gulp.dest(path.join(paths.dist, 'css')));
 });
 
-// Default task to run all tasks
-gulp.task('default', gulp.series('minify-js', 'minify-css', 'gzip'));
+// Gzip JS
+gulp.task('gzip-js', () => {
+    return gulp.src(path.join(paths.dist, 'js/*.js'))
+        .pipe(gzip())
+        .pipe(gulp.dest(path.join(paths.dist, 'js')));
+});
+
+// Default task
+gulp.task('default', gulp.series('minify-css', 'minify-js', 'gzip-css', 'gzip-js'));
 
 
 
