@@ -1,34 +1,31 @@
-name: Deploy to Cloudflare Pages
+name: Publish to Cloudflare Pages
 
 on:
   push:
     branches:
-      - main  # Modify based on your branch name
+      - main
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      # Run your build steps here if required
+      - name: Install Dependencies
+        run: npm install  # Adjust based on your project's dependency management
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+      - name: Build Project
+        run: npm run build  # Adjust based on your build script
+
+      - name: Prepare Deployment
+        run: |
+          mkdir -p dist
+          mv build/* dist/  # Assuming build output is moved to dist directory
+        # Add any additional steps needed to prepare your build output
+
+      - name: Archive Artifact
+        uses: actions/upload-artifact@v2
         with:
-          apiToken: ${{ Z08gFjGcaR6wxJrnMj2zRBaUgYfNKH8R-Shz-ySK }}
-          accountId: 2c2eae7c46fdef478ca007471a296695  # Replace with your Cloudflare account ID
-          projectName: demo  # Replace with your Cloudflare project name
-          directory: dist  # Replace with your build output directory
-          # Optional: Enable this if you want GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # Optional: Specify the branch to deploy to
-          branch: main
-          # Optional: Change the working directory
-          workingDirectory: my-site
-          # Optional: Change the Wrangler version, e.g., 'beta'
-          wranglerVersion: '3'
+          name: build-artifact
+          path: dist  # Specify the directory containing build artifacts
