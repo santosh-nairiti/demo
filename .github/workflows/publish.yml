@@ -1,22 +1,30 @@
-on: [push]
+name: Publish to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main  # Trigger publishing on push to main branch
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-    name: Publish to Cloudflare Pages
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    strategy:
+      matrix:
+        node-version: [20.x]  # Specify Node.js version 20
 
-      # Run a build step here if your project requires
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3  # Update to latest version that supports Node.js 20
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 2c2eae7c46fdef478ca007471a296695
-          projectName: demo
-          directory: dist
+          accountId: 2c2eae7c46fdef478ca007471a296695  # Replace with your Cloudflare account ID
+          projectName: demo  # Replace with your Cloudflare project name
+          directory: dist  # Replace with the directory containing build artifacts
