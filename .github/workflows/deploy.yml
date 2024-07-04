@@ -13,26 +13,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download Artifact
-        uses: actions/github-script@0.6.0
+        uses: actions/download-artifact@v2
         with:
-          script: |
-            const { execSync } = require('child_process');
-            const fs = require('fs');
-            const path = require('path');
-
-            // List artifacts
-            const artifacts = JSON.parse(execSync('curl -s -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts').toString());
-
-            // Find the artifact named "build-artifact"
-            const artifact = artifacts.artifacts.find(artifact => artifact.name === 'build-artifact');
-
-            // Download artifact if found
-            if (artifact) {
-              execSync(`curl -s -H "Authorization: Bearer $GITHUB_TOKEN" -LJO https://api.github.com/repos/$GITHUB_REPOSITORY/actions/artifacts/${artifact.id}/zip`);
-              execSync(`unzip -q ${artifact.name}.zip -d dist`);  // Extract to "dist" directory
-            } else {
-              throw new Error('Unable to find "build-artifact" artifact.');
-            }
+          name: build-artifact  # Name of artifact uploaded in publish.yml
+          path: dist  # Specify the directory where artifacts will be extracted
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
