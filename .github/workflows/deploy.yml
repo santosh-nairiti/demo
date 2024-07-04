@@ -15,7 +15,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: build-artifact  # Name of artifact uploaded in publish.yml
+          name: build  # Name of artifact uploaded in previous workflow
           path: dist  # Specify the directory where artifacts will be extracted
 
       - name: Deploy to Cloudflare Pages
