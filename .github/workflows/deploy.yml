@@ -1,0 +1,24 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main  # Replace with your branch name where changes trigger deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Optional: Run a build step here if your project requires
+      # Replace with your build script and command
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+           accountId: 2c2eae7c46fdef478ca007471a296695  # Replace with your Cloudflare account ID
+           projectName: demo  # Replace with your Cloudflare project name
+           directory: dist  # Replace with the directory containing build artifacts
