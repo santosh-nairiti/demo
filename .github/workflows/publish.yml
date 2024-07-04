@@ -8,9 +8,6 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]  # Specify Node.js version 20
 
     steps:
       - name: Checkout Repository
