@@ -21,7 +21,7 @@ jobs:
           projectName: demo
           directory: dist
           # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          gitHubToken: ${{ Z08gFjGcaR6wxJrnMj2zRBaUgYfNKH8R-Shz-ySK }}
           # Optional: Switch what branch you are publishing to.
           # By default this will be the branch which triggered this workflow
           branch: main
