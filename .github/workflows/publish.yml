@@ -13,15 +13,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: npm install  # Adjust based on your project's dependency management
+        run: npm install  # Install project dependencies
 
       - name: Build Project
-        run: npm run build  # Adjust based on your build script
+        run: npm run build  # Execute the build script defined in package.json
 
       - name: Prepare Deployment
         run: |
           mkdir -p dist
-          mv build/* dist/  # Assuming build output is moved to dist directory
+          mv build/* dist/  # Move build artifacts to dist directory
         # Add any additional steps needed to prepare your build output
 
       - name: Archive Artifact
