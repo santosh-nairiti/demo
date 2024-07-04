@@ -20,7 +20,7 @@ jobs:
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          apiToken: ${{ Z08gFjGcaR6wxJrnMj2zRBaUgYfNKH8R-Shz-ySK }}
           accountId: 2c2eae7c46fdef478ca007471a296695  # Replace with your Cloudflare account ID
           projectName: demo  # Replace with your Cloudflare project name
           directory: dist  # Replace with your build output directory
