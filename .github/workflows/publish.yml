@@ -1,19 +1,20 @@
-on: [push]
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main  # Replace with your branch name where changes trigger deployment
 
 jobs:
-  publish:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-    name: Publish to Cloudflare Pages
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # Run a build step here if your project requires
+      # Optional: Run a build step here if your project requires
 
-      - name: Publish to Cloudflare Pages
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
            apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
