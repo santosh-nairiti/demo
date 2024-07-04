@@ -1,46 +1,33 @@
 const gulp = require('gulp');
 const minifyCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
+const pump = require('pump');
 const gzip = require('gulp-gzip');
-const path = require('path');
 
-// Paths
-const paths = {
-    css: './src/css/*.css',
-    js: './src/js/*.js',
-    dist: './dist'
-};
-
-// Minify CSS
-gulp.task('minify-css', () => {
-    return gulp.src(paths.css)
-        .pipe(minifyCSS())
-        .pipe(gulp.dest(path.join(paths.dist, 'css')));
+gulp.task('minify-css', function() {
+  return gulp.src('src/css/*.css')
+    .pipe(minifyCSS())
+    .pipe(gulp.dest('dist/css'));
 });
 
-// Minify JS
-gulp.task('minify-js', () => {
-    return gulp.src(paths.js)
-        .pipe(uglify())
-        .pipe(gulp.dest(path.join(paths.dist, 'js')));
+gulp.task('uglify-js', function(cb) {
+  pump([
+    gulp.src('src/js/*.js'),
+    uglify(),
+    gulp.dest('dist/js')
+  ], cb);
 });
 
-// Gzip CSS
-gulp.task('gzip-css', () => {
-    return gulp.src(path.join(paths.dist, 'css/*.css'))
-        .pipe(gzip())
-        .pipe(gulp.dest(path.join(paths.dist, 'css')));
+gulp.task('gzip', function() {
+  return gulp.src(['dist/css/*.css', 'dist/js/*.js'])
+    .pipe(gzip())
+    .pipe(gulp.dest('dist'));
 });
 
-// Gzip JS
-gulp.task('gzip-js', () => {
-    return gulp.src(path.join(paths.dist, 'js/*.js'))
-        .pipe(gzip())
-        .pipe(gulp.dest(path.join(paths.dist, 'js')));
-});
+gulp.task('default', gulp.series('minify-css', 'uglify-js', 'gzip'));
 
-// Default task
-gulp.task('default', gulp.series('minify-css', 'minify-js', 'gzip-css', 'gzip-js'));
+
+
 
 
 
