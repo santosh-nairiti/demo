@@ -21,9 +21,9 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: YOUR_ACCOUNT_ID  # Replace with your Cloudflare account ID
-          projectName: YOUR_PROJECT_NAME  # Replace with your Cloudflare project name
-          directory: YOUR_BUILD_OUTPUT_DIRECTORY  # Replace with your build output directory
+          accountId: 2c2eae7c46fdef478ca007471a296695  # Replace with your Cloudflare account ID
+          projectName: demo  # Replace with your Cloudflare project name
+          directory: build  # Replace with your build output directory
           # Optional: Enable this if you want GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           # Optional: Specify the branch to deploy to
