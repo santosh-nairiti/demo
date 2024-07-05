@@ -27,6 +27,13 @@ jobs:
         npm run minify-js
         mkdir -p dist/css
         npm run minify-css
+        
+    - name: Print Minified Files
+      run: |
+        echo "Listing minified files:"
+        ls -lh dist/css
+        ls -lh dist/js
+      
     - name: Print Files to be Deployed
       run: |
         echo "Listing all files to be deployed:"
