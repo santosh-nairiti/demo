@@ -56,4 +56,8 @@ jobs:
       env:
         CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
+    - name: Check File Accessibility
+      run: |
+        echo "Checking accessibility of the minified files"
+        curl -I "https://demo-bf3.pages.dev/dist/css/style.min.css"
+        curl -I "https://demo-bf3.pages.dev/dist/js/app.min.js"
