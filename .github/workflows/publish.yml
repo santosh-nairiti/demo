@@ -3,21 +3,35 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
-      - main  # Replace with your branch name where changes trigger deployment
+      - main  # Nuvvu deploy cheyyalani korukunna branch ikkada mention cheyyali
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Optional: Run a build step here if your project requires
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.13.1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/pages-action@1
         with:
            apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
            accountId: 2c2eae7c46fdef478ca007471a296695  # Replace with your Cloudflare account ID
            projectName: demo  # Replace with your Cloudflare project name
            directory: dist  # Replace with the directory containing build artifacts
+
+# Secrets Configuration:
+# GitHub repository lo `Settings` > `Secrets` and variables > `Actions` lo velli `New repository secret` click chesi `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` ni create cheyyali.
+
