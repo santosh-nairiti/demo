@@ -8,5 +8,5 @@ zone_id = "fec2bdb9b6cb3f5f0de71ec2208c999c"
 bucket = "./dist"
 entry-point = "workers-site"
 
-[[route]]
+[[routes]]
 pattern = "https://shankariayur.com/*"
