@@ -23,7 +23,9 @@ jobs:
 
     - name: Minify and uglify CSS and JS
       run: |
+        mkdir -p dist/js
         npm run minify-js
+        mkdir -p dist/css
         npm run minify-css
 
     - name: Deploy to Cloudflare
