@@ -27,6 +27,10 @@ jobs:
         npm run minify-js
         mkdir -p dist/css
         npm run minify-css
+    - name: Print Files to be Deployed
+      run: |
+        echo "Listing all files to be deployed:"
+        find dist -type f
 
     - name: Deploy to Cloudflare
       run: npx wrangler publish
