@@ -1,37 +1,37 @@
-name: Deploy to Cloudflare Pages
+name: Deploy to Cloudflare
 
 on:
   push:
     branches:
-      - main  # Nuvvu deploy cheyyalani korukunna branch ikkada mention cheyyali
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 20.13.1
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Build project
-        run: npm run build
+    - name: Minify and uglify CSS and JS
+      run: |
+        npm run minify-js
+        npm run minify-css
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@1
-        with:
-           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}  # Replace with your Cloudflare account ID
-           projectName: demo  # Replace with your Cloudflare project name
-           directory: dist  # Replace with the directory containing build artifacts
-
-# Secrets Configuration:
-# GitHub repository lo `Settings` > `Secrets` and variables > `Actions` lo velli `New repository secret` click chesi `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` ni create cheyyali.
-
+    - name: Deploy to Cloudflare
+      run: |
+        # Add commands to deploy to Cloudflare
+        # This can vary based on how you deploy to Cloudflare (e.g., using Wrangler)
+        # Example using Wrangler:
+        npx wrangler publish
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        # Other required environment variables
