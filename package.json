@@ -5,7 +5,9 @@
     "build": "gulp --gulpfile build/gulpfile.js"
   },
   "devDependencies": {
-    "gulp": "^4.0.2"
-    // other dependencies
+    "gulp": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "gulp-gzip": "^1.4.2",
+    "gulp-clean-css": "^4.3.0"
   }
 }
