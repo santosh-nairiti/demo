@@ -1,0 +1,12 @@
+name = "demo"
+type = "webpack"
+account_id = "2c2eae7c46fdef478ca007471a296695"
+workers_dev = true
+zone_id = "fec2bdb9b6cb3f5f0de71ec2208c999c"
+
+[site]
+bucket = "./dist"
+entry-point = "workers-site"
+
+[[route]]
+pattern = "https://shankariayur.com/*"
