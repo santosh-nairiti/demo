@@ -1,31 +1,35 @@
 addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request));
-  });
-  
-  async function handleRequest(request) {
-    // Log incoming request headers
-    console.log('Request Headers:', JSON.stringify([...request.headers]));
-  
-    // Fetch the asset
-    let response = await fetch(request);
-  
-    // Log response headers before modification
-    console.log('Original Response Headers:', JSON.stringify([...response.headers]));
-  
-    // Modify response headers
-    response = new Response(response.body, response);
-  
-    // Determine content type based on file extension
-    const url = new URL(request.url);
-    if (url.pathname.endsWith('.css')) {
-      response.headers.set('Content-Type', 'text/css');
-    } else if (url.pathname.endsWith('.js')) {
-      response.headers.set('Content-Type', 'text/javascript');
-    }
-  
-    // Log response headers after modification
-    console.log('Modified Response Headers:', JSON.stringify([...response.headers]));
-  
-    return response;
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  const url = new URL(request.url)
+  let path = url.pathname
+
+  // Determine content type based on the file extension
+  let contentType = 'text/plain'
+  if (path.endsWith('.css')) {
+    contentType = 'text/css'
+  } else if (path.endsWith('.js')) {
+    contentType = 'application/javascript'
   }
-  
+
+  // Serve the file from the bucket
+  try {
+    const response = await fetch(`https://demo-bf3.pages.dev${path}`)
+    if (response.ok) {
+      // Clone the response to modify the headers
+      const newHeaders = new Headers(response.headers)
+      newHeaders.set('Content-Type', contentType)
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: newHeaders
+      })
+    } else {
+      return new Response('File not found', { status: 404 })
+    }
+  } catch (e) {
+    return new Response('Error fetching the file', { status: 500 })
+  }
+}
