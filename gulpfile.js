@@ -25,11 +25,3 @@ gulp.task('gzip', function() {
 });
 
 gulp.task('default', gulp.series('minify-css', 'uglify-js', 'gzip'));
-
-
-
-
-
-
-
-
